@@ -10,10 +10,10 @@ resource "hcloud_ssh_key" "key" {
 }
 
 module "net" {
-  source = "zoro16/network/hcloud"
+  source  = "zoro16/network/hcloud"
   version = "1.0.0"
 
-  create_network = true
+  create_network                   = true
   network_name                     = "example-network-server"
   network_ip_cidr_range            = "10.10.0.0/16"
   network_delete_protection        = false
@@ -46,6 +46,6 @@ module "sv" {
   private_network_ip = "10.10.20.1"
 
   depends_on = [
-     module.net
+    module.net
   ]
 }
