@@ -94,6 +94,9 @@ No modules.
 | <a name="input_primary_ip_type"></a> [primary\_ip\_type](#input\_primary\_ip\_type) | Type of the Primary IP. `ipv4` or `ipv6` | `string` | `"ipv4"` | no |
 | <a name="input_primary_ipv4"></a> [primary\_ipv4](#input\_primary\_ipv4) | This is static IP that could be assign to any server in the time of server creation or after that. Note that the server and this IP should be in the same region e.g. eu-central | `string` | `null` | no |
 | <a name="input_primary_ipv6"></a> [primary\_ipv6](#input\_primary\_ipv6) | This is static IP that could be assign to any server in the time of server creation or after that. Note that the server and this IP should be in the same region e.g. eu-central | `string` | `null` | no |
+| <a name="input_private_network_alias_ips"></a> [private\_network\_alias\_ips](#input\_private\_network\_alias\_ips) | Alias IPs the server should have in the Network. | `list(string)` | `[]` | no |
+| <a name="input_private_network_id"></a> [private\_network\_id](#input\_private\_network\_id) | ID of the network the server well be attached. | `number` | `null` | no |
+| <a name="input_private_network_ip"></a> [private\_network\_ip](#input\_private\_network\_ip) | Specify the IP the server should get in the network. | `string` | `null` | no |
 | <a name="input_public_net_ipv4_enabled"></a> [public\_net\_ipv4\_enabled](#input\_public\_net\_ipv4\_enabled) | Whether to enable or disable a public IPv4 (could be access from the Internet). | `bool` | `true` | no |
 | <a name="input_public_net_ipv6_enabled"></a> [public\_net\_ipv6\_enabled](#input\_public\_net\_ipv6\_enabled) | Whether to enable or disable a public IPv6 (could be access from the Internet). | `bool` | `true` | no |
 | <a name="input_rebuild_protection"></a> [rebuild\_protection](#input\_rebuild\_protection) | Enable or disable rebuild protection (Needs to be the same as delete\_protection). | `bool` | `false` | no |
@@ -106,6 +109,7 @@ No modules.
 | <a name="input_server_network_server_id"></a> [server\_network\_server\_id](#input\_server\_network\_server\_id) | ID of the Server to be attached/linked to the network. | `number` | `null` | no |
 | <a name="input_server_network_subnet_id"></a> [server\_network\_subnet\_id](#input\_server\_network\_subnet\_id) | ID of the sub-network which should be added to the Server. Required if `network_id` is not set. Note: if the `ip` property is missing, the Server is currently added to the last created subnet. | `string` | `null` | no |
 | <a name="input_server_type"></a> [server\_type](#input\_server\_type) | (Required, string) Name of the server type this server should be created with. | `string` | `"cx11"` | no |
+| <a name="input_shutdown_before_deletion"></a> [shutdown\_before\_deletion](#input\_shutdown\_before\_deletion) | Whether to try shutting the server down gracefully before deleting it. | `bool` | `false` | no |
 | <a name="input_snapshot_description"></a> [snapshot\_description](#input\_snapshot\_description) | Description of the snapshot. | `string` | `""` | no |
 | <a name="input_snapshot_labels"></a> [snapshot\_labels](#input\_snapshot\_labels) | User-defined labels (key-value pairs) should be created with. | `map(string)` | `{}` | no |
 | <a name="input_ssh_keys"></a> [ssh\_keys](#input\_ssh\_keys) | SSH key IDs or names which should be injected into the server at creation time. | `list(string)` | `[]` | no |
@@ -132,6 +136,8 @@ No modules.
 | <a name="output_primary_ip_type"></a> [primary\_ip\_type](#output\_primary\_ip\_type) | Type of the Primary IP. `ipv4` or `ipv6` |
 | <a name="output_server_backups"></a> [server\_backups](#output\_server\_backups) | Whether the backups are enabled or not. |
 | <a name="output_server_datacenter"></a> [server\_datacenter](#output\_server\_datacenter) | The datacenter that the server is located in. |
+| <a name="output_server_delete_protection"></a> [server\_delete\_protection](#output\_server\_delete\_protection) | Whether delete protection is enabled. |
+| <a name="output_server_firewall_ids"></a> [server\_firewall\_ids](#output\_server\_firewall\_ids) | Firewall IDs the server is attached to. |
 | <a name="output_server_id"></a> [server\_id](#output\_server\_id) | Unique ID of the server. |
 | <a name="output_server_image"></a> [server\_image](#output\_server\_image) | Name or ID of the image the server was created from. |
 | <a name="output_server_ipv4_address"></a> [server\_ipv4\_address](#output\_server\_ipv4\_address) | The IPV4 Address for the VM server |
@@ -144,6 +150,9 @@ No modules.
 | <a name="output_server_network_ip"></a> [server\_network\_ip](#output\_server\_network\_ip) | IP to request to be assigned to this server. If you do not provide this then you will be auto assigned an IP address. |
 | <a name="output_server_network_network_id"></a> [server\_network\_network\_id](#output\_server\_network\_network\_id) | ID of the Network which should be added to the Server. Required if `subnet_id` is not set. Successful creation of the resource depends on the existence of a subnet in the Hetzner Cloud Backend. Using `network_id` will not create an explicit dependency between server and subnet. Therefore `depends_on` may need to be used. Alternatively the `subnet_id` property can be used, which will create an explicit dependency between `hcloud_server_network` and the existence of a subnet. |
 | <a name="output_server_network_server_id"></a> [server\_network\_server\_id](#output\_server\_network\_server\_id) | ID of the Server to be attached/linked to the network. |
+| <a name="output_server_private_network"></a> [server\_private\_network](#output\_server\_private\_network) | Private Network the server shall be attached to. The Network that should be attached to the server requires at least one subnetwork. Subnetworks cannot be referenced by Servers in the Hetzner Cloud API. Therefore Terraform attempts to create the subnetwork in parallel to the server. This leads to a concurrency issue. It is therefore necessary to use depends\_on to link the server to the respective subnetwork. See examples. |
+| <a name="output_server_rebuild_protection"></a> [server\_rebuild\_protection](#output\_server\_rebuild\_protection) | Whether rebuild protection is enabled. |
+| <a name="output_server_shutdown_before_deletion"></a> [server\_shutdown\_before\_deletion](#output\_server\_shutdown\_before\_deletion) | Whether the server will try to shut down gracefully before being deleted. |
 | <a name="output_server_status"></a> [server\_status](#output\_server\_status) | The status of the server. |
 | <a name="output_server_type"></a> [server\_type](#output\_server\_type) | The type of the server. |
 | <a name="output_snapshot_description"></a> [snapshot\_description](#output\_snapshot\_description) | The description of the snapshot. |
