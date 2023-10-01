@@ -61,13 +61,40 @@ output "server_ipv6_address" {
 
 output "server_backups" {
   description = "Whether the backups are enabled or not."
-  value       = try(hcloud_server.server[0].backups, hcloud_server.server[*].backups, "")
+  value       = try(hcloud_server.server[0].backups, hcloud_server.server[*].backups)
 }
 
 output "server_labels" {
   description = "The User-defined labels (key-value pairs)"
-  value       = try(hcloud_server.server[0].labels, hcloud_server.server[*].labels, "")
+  value       = try(hcloud_server.server[0].labels, hcloud_server.server[*].labels)
 }
+
+output "server_private_network" {
+  description = "Private Network the server shall be attached to. The Network that should be attached to the server requires at least one subnetwork. Subnetworks cannot be referenced by Servers in the Hetzner Cloud API. Therefore Terraform attempts to create the subnetwork in parallel to the server. This leads to a concurrency issue. It is therefore necessary to use depends_on to link the server to the respective subnetwork. See examples."
+  value       = try(hcloud_server.server[0].network, hcloud_server.server[*].network)
+}
+
+
+output "server_firewall_ids" {
+  description = "Firewall IDs the server is attached to."
+  value       = try(hcloud_server.server[0].firewall_ids, hcloud_server.server[*].firewall_ids)
+}
+
+output "server_delete_protection" {
+  description = "Whether delete protection is enabled."
+  value       = try(hcloud_server.server[0].delete_protection, hcloud_server.server[*].delete_protection)
+}
+
+output "server_rebuild_protection" {
+  description = "Whether rebuild protection is enabled."
+  value       = try(hcloud_server.server[0].rebuild_protection, hcloud_server.server[*].rebuild_protection)
+}
+
+output "server_shutdown_before_deletion" {
+  description = "Whether the server will try to shut down gracefully before being deleted."
+  value       = try(hcloud_server.server[0].shutdown_before_deletion, hcloud_server.server[*].shutdown_before_deletion)
+}
+
 
 ################################################
 # Placement Group

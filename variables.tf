@@ -79,6 +79,24 @@ variable "public_net_ipv6_enabled" {
   default     = true
 }
 
+variable "private_network_id" {
+  description = "ID of the network the server well be attached."
+  type        = number
+  default     = null
+}
+
+variable "private_network_ip" {
+  description = "Specify the IP the server should get in the network."
+  type        = string
+  default     = null
+}
+
+variable "private_network_alias_ips" {
+  description = "Alias IPs the server should have in the Network."
+  type        = list(string)
+  default     = []
+}
+
 variable "primary_ipv4" {
   description = "This is static IP that could be assign to any server in the time of server creation or after that. Note that the server and this IP should be in the same region e.g. eu-central"
   type        = string
@@ -147,6 +165,12 @@ variable "allow_deprecated_images" {
 
 variable "ignore_remote_firewall_ids" {
   description = "Ignores any updates to the `firewall_ids` argument which were received from the server. This should not be used in normal cases. See the documentation of the `hcloud_firewall_attachment` resource for a reason to use this argument."
+  type        = bool
+  default     = false
+}
+
+variable "shutdown_before_deletion" {
+  description = "Whether to try shutting the server down gracefully before deleting it."
   type        = bool
   default     = false
 }

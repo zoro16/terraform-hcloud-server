@@ -16,11 +16,10 @@ resource "hcloud_server" "server" {
   firewall_ids       = var.firewall_ids
   user_data          = var.user_data
 
-  delete_protection  = var.delete_protection
-  rebuild_protection = var.rebuild_protection
-
-  keep_disk = var.keep_disk
-
+  delete_protection          = var.delete_protection
+  rebuild_protection         = var.rebuild_protection
+  shutdown_before_deletion   = var.shutdown_before_deletion
+  keep_disk                  = var.keep_disk
   iso                        = var.iso
   rescue                     = var.rescue
   allow_deprecated_images    = var.allow_deprecated_images
@@ -33,6 +32,12 @@ resource "hcloud_server" "server" {
     ipv6_enabled = var.public_net_ipv6_enabled
     ipv4         = var.primary_ipv4
     ipv6         = var.primary_ipv6
+  }
+
+  network {
+    network_id = var.private_network_id
+    ip         = var.private_network_ip
+    alias_ips  = var.private_network_alias_ips
   }
 }
 
