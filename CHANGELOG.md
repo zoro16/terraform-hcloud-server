@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.1.0](https://github.com/zoro16/terraform-hcloud-server/compare/v1.0.0...v1.1.0) (2023-10-01)
+
+
+### Features
+
+* adding support for direct network attachment on creation ([ca39c36](https://github.com/zoro16/terraform-hcloud-server/commit/ca39c36c7dcfced3f6f14b84cf303782959d54fe))
+
 ## 1.0.0 (2023-09-24)
 
 
