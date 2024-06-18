@@ -46,7 +46,7 @@ variable "location" {
 variable "server_type" {
   description = " (Required, string) Name of the server type this server should be created with."
   type        = string
-  default     = "cx11"
+  default     = "cx22"
 
   validation {
     condition = contains(
@@ -57,7 +57,7 @@ variable "server_type" {
         "ccx13", "ccx23", "ccx33", "ccx43", "ccx53", "ccx63", # Dedicated AMD
       ],
     var.server_type)
-    error_message = "Must have a vaild server type name, e.g. cx11"
+    error_message = "Must have a vaild server type name, e.g. cx22"
   }
 }
 
