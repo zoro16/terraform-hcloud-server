@@ -51,7 +51,7 @@ variable "server_type" {
   validation {
     condition = contains(
       [
-        "cx11", "cx21", "cx31", "cx41", "cx51",               # Intel
+        "cx22", "cx32", "cx42", "cx52",                       # Intel
         "cpx11", "cpx21", "cpx31", "cpx41", "cpx51",          # AMD
         "cax11", "cax21", "cax31", "cax41",                   # ARM64
         "ccx13", "ccx23", "ccx33", "ccx43", "ccx53", "ccx63", # Dedicated AMD
