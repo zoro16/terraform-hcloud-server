@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.2.1](https://github.com/zoro16/terraform-hcloud-server/compare/v1.2.0...v1.2.1) (2024-06-18)
+
+
+### Bug Fixes
+
+* validation for server type ([cca6a96](https://github.com/zoro16/terraform-hcloud-server/commit/cca6a961a3c8eef7b42bc38bcbb0a4512091fe41))
+
 ## [1.2.0](https://github.com/zoro16/terraform-hcloud-server/compare/v1.1.0...v1.2.0) (2024-06-17)
 
 
