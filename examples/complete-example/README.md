@@ -1,3 +1,4 @@
+# complete-example
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Requirements
@@ -5,18 +6,20 @@
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.2.0 |
-| <a name="requirement_hcloud"></a> [hcloud](#requirement\_hcloud) | >= 1.42.1 |
+| <a name="requirement_hcloud"></a> [hcloud](#requirement\_hcloud) | >= 1.48.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_hcloud"></a> [hcloud](#provider\_hcloud) | >= 1.42.1 |
+| <a name="provider_hcloud"></a> [hcloud](#provider\_hcloud) | >= 1.48.0 |
 
 ## Modules
 
 | Name | Source | Version |
 |------|--------|---------|
+| <a name="module_net"></a> [net](#module\_net) | zoro16/network/hcloud | 1.1.2 |
+| <a name="module_placement_group"></a> [placement\_group](#module\_placement\_group) | zoro16/server/hcloud | 1.2.2 |
 | <a name="module_sv"></a> [sv](#module\_sv) | ../.. | n/a |
 
 ## Resources
@@ -45,6 +48,10 @@
 | <a name="output_server_labels"></a> [server\_labels](#output\_server\_labels) | The User-defined labels (key-value pairs) |
 | <a name="output_server_location"></a> [server\_location](#output\_server\_location) | The location of the server |
 | <a name="output_server_name"></a> [server\_name](#output\_server\_name) | Name of the server. |
+| <a name="output_server_private_network_alias_ips"></a> [server\_private\_network\_alias\_ips](#output\_server\_private\_network\_alias\_ips) | Private Network Alias IPs |
+| <a name="output_server_private_network_id"></a> [server\_private\_network\_id](#output\_server\_private\_network\_id) | Private Network IDs |
+| <a name="output_server_private_network_ip"></a> [server\_private\_network\_ip](#output\_server\_private\_network\_ip) | Private Network IP |
+| <a name="output_server_private_network_mac_address"></a> [server\_private\_network\_mac\_address](#output\_server\_private\_network\_mac\_address) | Private Network MAC Address' |
 | <a name="output_server_status"></a> [server\_status](#output\_server\_status) | The status of the server. |
 | <a name="output_server_type"></a> [server\_type](#output\_server\_type) | The type of the server. |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->

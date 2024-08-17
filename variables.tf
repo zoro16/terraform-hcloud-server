@@ -61,6 +61,36 @@ variable "server_type" {
   }
 }
 
+# variable "server_type_map" {
+#   description = "This is a mapping for Hcloud's server types. The `key` is a combination of `[Processor Architecture]_[Number of vCores]_[RAM size]`. The `value` is Hcloud server type name."
+#   type        = map(string)
+#   default = {
+#     # "x86_1_2GB" : "cx11",  # Intel
+#     "x86_2_4GB" : "cx22",   # Intel
+#     "x86_4_8GB" : "cx32",   # Intel
+#     "x86_8_16GB" : "cx42",  # Intel
+#     "x86_16_32GB" : "cx52", # Intel
+
+#     "x86_2_2GB" : "cpx11",   # AMD
+#     "x86_3_4GB" : "cpx21",   # AMD
+#     "x86_4_8GB" : "cpx31",   # AMD
+#     "x86_8_16GB" : "cpx41",  # AMD
+#     "x86_16_32GB" : "cpx51", # AMD
+
+#     "x86_2_8GB_dedicated" : "ccx13",    # Dedicated AMD
+#     "x86_4_16GB_dedicated" : "ccx23",   # Dedicated AMD
+#     "x86_8_32GB_dedicated" : "ccx33",   # Dedicated AMD
+#     "x86_16_64GB_dedicated" : "ccx43",  # Dedicated AMD
+#     "x86_32_128GB_dedicated" : "ccx53", # Dedicated AMD
+#     "x86_48_192GB_dedicated" : "ccx63", # Dedicated AMD
+
+#     "arm64_2_4GB" : "cax11",   # ARM64
+#     "arm64_4_8GB" : "cax21",   # ARM64
+#     "arm64_8_16GB" : "cax31",  # ARM64
+#     "arm64_16_32GB" : "cax41", # ARM64
+#   }
+# }
+
 variable "image" {
   description = "The name of Hcloud OS image e.g. Debain, Ubuntu etc."
   type        = string
@@ -110,7 +140,7 @@ variable "primary_ipv6" {
 }
 
 variable "user_data" {
-  description = "This could a Bash script or cloud-init configurations that would run the first time the VM is provisioned."
+  description = "This could be a Bash script or cloud-init configurations that would run the first time the VM is provisioned."
   type        = string
   default     = ""
 }
@@ -246,48 +276,6 @@ variable "snapshot_labels" {
   description = "User-defined labels (key-value pairs) should be created with."
   type        = map(string)
   default     = {}
-}
-
-
-################################################
-# Server Network
-# https://registry.terraform.io/providers/hetznercloud/hcloud/latest/docs/resources/server_network
-################################################
-
-variable "create_server_network" {
-  description = "A boolean to check whether to create a Server Network resource or not."
-  type        = bool
-  default     = false
-}
-
-variable "server_network_server_id" {
-  description = "ID of the Server to be attached/linked to the network."
-  type        = number
-  default     = null
-}
-
-variable "server_network_network_id" {
-  description = "ID of the Network which should be added to the Server. Required if `subnet_id` is not set. Successful creation of the resource depends on the existence of a subnet in the Hetzner Cloud Backend. Using `network_id` will not create an explicit dependency between server and subnet. Therefore `depends_on` may need to be used. Alternatively the `subnet_id` property can be used, which will create an explicit dependency between `hcloud_server_network` and the existence of a subnet."
-  type        = number
-  default     = null
-}
-
-variable "server_network_alias_ips" {
-  description = "Additional IPs to be assigned to this server."
-  type        = list(string)
-  default     = []
-}
-
-variable "server_network_subnet_id" {
-  description = "ID of the sub-network which should be added to the Server. Required if `network_id` is not set. Note: if the `ip` property is missing, the Server is currently added to the last created subnet."
-  type        = string
-  default     = null
-}
-
-variable "server_network_ip" {
-  description = "IP to request to be assigned to this server. If you do not provide this then you will be auto assigned an IP address."
-  type        = string
-  default     = null
 }
 
 

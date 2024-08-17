@@ -41,17 +41,11 @@ output "server_datacenter" {
 output "server_ipv4_address" {
   description = "The IPV4 Address for the VM server"
   value       = try(hcloud_server.server[0].ipv4_address, hcloud_server.server[*].ipv4_address)
-  # {
-  #   for ipv4 in hcloud_server.server : ipv4.name => ipv4.ipv4_address
-  # }
 }
 
 output "server_ipv6_address" {
   description = "The IPV6 Address for the VM server"
   value       = try(hcloud_server.server[0].ipv6_address, hcloud_server.server[*].ipv6_address)
-  # {
-  #   for ipv6 in hcloud_server.server : ipv6.name => ipv6.ipv6_address
-  # }
 }
 
 # output "server_backup_window" {
@@ -69,12 +63,41 @@ output "server_labels" {
   value       = try(hcloud_server.server[0].labels, hcloud_server.server[*].labels)
 }
 
+################################################################
 output "server_private_network" {
   description = "Private Network the server shall be attached to. The Network that should be attached to the server requires at least one subnetwork. Subnetworks cannot be referenced by Servers in the Hetzner Cloud API. Therefore Terraform attempts to create the subnetwork in parallel to the server. This leads to a concurrency issue. It is therefore necessary to use depends_on to link the server to the respective subnetwork. See examples."
   value       = try(hcloud_server.server[0].network, hcloud_server.server[*].network)
 }
 
+output "server_private_network_ip" {
+  description = "Private Network IPs"
+  value = toset([
+    for v in hcloud_server.server[0].network : v.ip
+  ])
+}
 
+output "server_private_network_id" {
+  description = "Private Network IDs"
+  value = toset([
+    for v in hcloud_server.server[0].network : v.network_id
+  ])
+}
+
+output "server_private_network_alias_ips" {
+  description = "Private Network Alias IPs"
+  value = toset([
+    for v in hcloud_server.server[0].network : v.alias_ips
+  ])
+}
+
+output "server_private_network_mac_address" {
+  description = "Private Network MAC Address'"
+  value = toset([
+    for v in hcloud_server.server[0].network : v.mac_address
+  ])
+}
+
+################################################################
 output "server_firewall_ids" {
   description = "Firewall IDs the server is attached to."
   value       = try(hcloud_server.server[0].firewall_ids, hcloud_server.server[*].firewall_ids)
@@ -146,39 +169,6 @@ output "snapshot_labels" {
   description = "The user-defined labels"
   value       = try(hcloud_snapshot.snapshot[0].labels, hcloud_snapshot.snapshot[*].labels, null)
 }
-
-
-################################################
-# Server Network
-# https://registry.terraform.io/providers/hetznercloud/hcloud/latest/docs/resources/server_network
-################################################
-
-
-output "server_network_id" {
-  description = "ID of the Server Network resource."
-  value       = try(hcloud_server_network.server_network[0].id, hcloud_server_network.server_network[*].id, null)
-}
-
-output "server_network_server_id" {
-  description = "ID of the Server to be attached/linked to the network."
-  value       = try(hcloud_server_network.server_network[0].server_id, hcloud_server_network.server_network[*].server_id, null)
-}
-
-output "server_network_network_id" {
-  description = "ID of the Network which should be added to the Server. Required if `subnet_id` is not set. Successful creation of the resource depends on the existence of a subnet in the Hetzner Cloud Backend. Using `network_id` will not create an explicit dependency between server and subnet. Therefore `depends_on` may need to be used. Alternatively the `subnet_id` property can be used, which will create an explicit dependency between `hcloud_server_network` and the existence of a subnet."
-  value       = try(hcloud_server_network.server_network[0].network_id, hcloud_server_network.server_network[*].network_id, null)
-}
-
-output "server_network_alias_ips" {
-  description = "Additional IPs to be assigned to this server."
-  value       = try(hcloud_server_network.server_network[*].alias_ips, [])
-}
-
-output "server_network_ip" {
-  description = "IP to request to be assigned to this server. If you do not provide this then you will be auto assigned an IP address."
-  value       = try(hcloud_server_network.server_network[0].ip, hcloud_server_network.server_network[*].ip, null)
-}
-
 
 ################################################
 # Primary IP
