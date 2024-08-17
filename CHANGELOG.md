@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.3.0](https://github.com/zoro16/terraform-hcloud-server/compare/v1.2.2...v1.3.0) (2024-08-17)
+
+
+### Features
+
+* make outputs handle multi servers ([0221612](https://github.com/zoro16/terraform-hcloud-server/commit/022161227b008873c06ed4c2907686162e06ea2f))
+
+
+### Bug Fixes
+
+* network example ([4843889](https://github.com/zoro16/terraform-hcloud-server/commit/4843889889378708347709d020f13978a5706b76))
+
 ## [1.2.2](https://github.com/zoro16/terraform-hcloud-server/compare/v1.2.1...v1.2.2) (2024-06-18)
 
 
