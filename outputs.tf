@@ -170,39 +170,6 @@ output "snapshot_labels" {
   value       = try(hcloud_snapshot.snapshot[0].labels, hcloud_snapshot.snapshot[*].labels, null)
 }
 
-
-# ################################################
-# # Server Network
-# # https://registry.terraform.io/providers/hetznercloud/hcloud/latest/docs/resources/server_network
-# ################################################
-
-
-# output "server_network_id" {
-#   description = "ID of the Server Network resource."
-#   value       = try(hcloud_server_network.server_network[0].id, hcloud_server_network.server_network[*].id, null)
-# }
-
-# output "server_network_server_id" {
-#   description = "ID of the Server to be attached/linked to the network."
-#   value       = try(hcloud_server_network.server_network[0].server_id, hcloud_server_network.server_network[*].server_id, null)
-# }
-
-# output "server_network_network_id" {
-#   description = "ID of the Network which should be added to the Server. Required if `subnet_id` is not set. Successful creation of the resource depends on the existence of a subnet in the Hetzner Cloud Backend. Using `network_id` will not create an explicit dependency between server and subnet. Therefore `depends_on` may need to be used. Alternatively the `subnet_id` property can be used, which will create an explicit dependency between `hcloud_server_network` and the existence of a subnet."
-#   value       = try(hcloud_server_network.server_network[0].network_id, hcloud_server_network.server_network[*].network_id, null)
-# }
-
-# output "server_network_alias_ips" {
-#   description = "Additional IPs to be assigned to this server."
-#   value       = try(hcloud_server_network.server_network[*].alias_ips, [])
-# }
-
-# output "server_network_ip" {
-#   description = "IP to request to be assigned to this server. If you do not provide this then you will be auto assigned an IP address."
-#   value       = try(hcloud_server_network.server_network[0].ip, hcloud_server_network.server_network[*].ip, null)
-# }
-
-
 ################################################
 # Primary IP
 # https://registry.terraform.io/providers/hetznercloud/hcloud/latest/docs/resources/primary_ip
