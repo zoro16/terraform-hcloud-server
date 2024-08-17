@@ -38,13 +38,13 @@ module "sv" {
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.2.0 |
-| <a name="requirement_hcloud"></a> [hcloud](#requirement\_hcloud) | >= 1.47 |
+| <a name="requirement_hcloud"></a> [hcloud](#requirement\_hcloud) | >= 1.48 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_hcloud"></a> [hcloud](#provider\_hcloud) | >= 1.47 |
+| <a name="provider_hcloud"></a> [hcloud](#provider\_hcloud) | >= 1.48 |
 
 ## Modules
 
@@ -57,7 +57,6 @@ No modules.
 | [hcloud_placement_group.placement](https://registry.terraform.io/providers/hetznercloud/hcloud/latest/docs/resources/placement_group) | resource |
 | [hcloud_primary_ip.primary](https://registry.terraform.io/providers/hetznercloud/hcloud/latest/docs/resources/primary_ip) | resource |
 | [hcloud_server.server](https://registry.terraform.io/providers/hetznercloud/hcloud/latest/docs/resources/server) | resource |
-| [hcloud_server_network.server_network](https://registry.terraform.io/providers/hetznercloud/hcloud/latest/docs/resources/server_network) | resource |
 | [hcloud_snapshot.snapshot](https://registry.terraform.io/providers/hetznercloud/hcloud/latest/docs/resources/snapshot) | resource |
 
 ## Inputs
@@ -69,7 +68,6 @@ No modules.
 | <a name="input_create_placement_group"></a> [create\_placement\_group](#input\_create\_placement\_group) | A boolean to check whether to create a Placement Group resource or not. | `bool` | `false` | no |
 | <a name="input_create_primary_ip"></a> [create\_primary\_ip](#input\_create\_primary\_ip) | A boolean to check whether to create a Primary IP resource or not. | `bool` | `false` | no |
 | <a name="input_create_server"></a> [create\_server](#input\_create\_server) | A boolean to check whether to create a Server resource or not. | `bool` | `false` | no |
-| <a name="input_create_server_network"></a> [create\_server\_network](#input\_create\_server\_network) | A boolean to check whether to create a Server Network resource or not. | `bool` | `false` | no |
 | <a name="input_create_snapshot"></a> [create\_snapshot](#input\_create\_snapshot) | A boolean to check whether to create a Snapshot resource or not. | `bool` | `false` | no |
 | <a name="input_datacenter"></a> [datacenter](#input\_datacenter) | The datacenter name to create the server in. nbg1-dc3, fsn1-dc14, hel1-dc2, ash-dc1 or hil-dc1. The following a mapping for the datacenters and their region | `string` | `null` | no |
 | <a name="input_delete_protection"></a> [delete\_protection](#input\_delete\_protection) | Enable or disable delete protection (Needs to be the same as rebuild\_protection). | `bool` | `false` | no |
@@ -103,17 +101,12 @@ No modules.
 | <a name="input_rescue"></a> [rescue](#input\_rescue) | Enable and boot in to the specified rescue system. This enables simple installation of custom operating systems. linux64 or linux32 | `string` | `""` | no |
 | <a name="input_server_id"></a> [server\_id](#input\_server\_id) | ID of the server that already created. | `number` | `null` | no |
 | <a name="input_server_name"></a> [server\_name](#input\_server\_name) | Name of the server to create (must be unique per project and a valid hostname as per RFC 1123). | `string` | `"some-server-name"` | no |
-| <a name="input_server_network_alias_ips"></a> [server\_network\_alias\_ips](#input\_server\_network\_alias\_ips) | Additional IPs to be assigned to this server. | `list(string)` | `[]` | no |
-| <a name="input_server_network_ip"></a> [server\_network\_ip](#input\_server\_network\_ip) | IP to request to be assigned to this server. If you do not provide this then you will be auto assigned an IP address. | `string` | `null` | no |
-| <a name="input_server_network_network_id"></a> [server\_network\_network\_id](#input\_server\_network\_network\_id) | ID of the Network which should be added to the Server. Required if `subnet_id` is not set. Successful creation of the resource depends on the existence of a subnet in the Hetzner Cloud Backend. Using `network_id` will not create an explicit dependency between server and subnet. Therefore `depends_on` may need to be used. Alternatively the `subnet_id` property can be used, which will create an explicit dependency between `hcloud_server_network` and the existence of a subnet. | `number` | `null` | no |
-| <a name="input_server_network_server_id"></a> [server\_network\_server\_id](#input\_server\_network\_server\_id) | ID of the Server to be attached/linked to the network. | `number` | `null` | no |
-| <a name="input_server_network_subnet_id"></a> [server\_network\_subnet\_id](#input\_server\_network\_subnet\_id) | ID of the sub-network which should be added to the Server. Required if `network_id` is not set. Note: if the `ip` property is missing, the Server is currently added to the last created subnet. | `string` | `null` | no |
-| <a name="input_server_type"></a> [server\_type](#input\_server\_type) | (Required, string) Name of the server type this server should be created with. | `string` | `"cx11"` | no |
+| <a name="input_server_type"></a> [server\_type](#input\_server\_type) | (Required, string) Name of the server type this server should be created with. | `string` | `"cx22"` | no |
 | <a name="input_shutdown_before_deletion"></a> [shutdown\_before\_deletion](#input\_shutdown\_before\_deletion) | Whether to try shutting the server down gracefully before deleting it. | `bool` | `false` | no |
 | <a name="input_snapshot_description"></a> [snapshot\_description](#input\_snapshot\_description) | Description of the snapshot. | `string` | `""` | no |
 | <a name="input_snapshot_labels"></a> [snapshot\_labels](#input\_snapshot\_labels) | User-defined labels (key-value pairs) should be created with. | `map(string)` | `{}` | no |
 | <a name="input_ssh_keys"></a> [ssh\_keys](#input\_ssh\_keys) | SSH key IDs or names which should be injected into the server at creation time. | `list(string)` | `[]` | no |
-| <a name="input_user_data"></a> [user\_data](#input\_user\_data) | This could a Bash script or cloud-init configurations that would run the first time the VM is provisioned. | `string` | `""` | no |
+| <a name="input_user_data"></a> [user\_data](#input\_user\_data) | This could be a Bash script or cloud-init configurations that would run the first time the VM is provisioned. | `string` | `""` | no |
 
 ## Outputs
 
@@ -145,12 +138,11 @@ No modules.
 | <a name="output_server_labels"></a> [server\_labels](#output\_server\_labels) | The User-defined labels (key-value pairs) |
 | <a name="output_server_location"></a> [server\_location](#output\_server\_location) | The location of the server |
 | <a name="output_server_name"></a> [server\_name](#output\_server\_name) | Name of the server. |
-| <a name="output_server_network_alias_ips"></a> [server\_network\_alias\_ips](#output\_server\_network\_alias\_ips) | Additional IPs to be assigned to this server. |
-| <a name="output_server_network_id"></a> [server\_network\_id](#output\_server\_network\_id) | ID of the Server Network resource. |
-| <a name="output_server_network_ip"></a> [server\_network\_ip](#output\_server\_network\_ip) | IP to request to be assigned to this server. If you do not provide this then you will be auto assigned an IP address. |
-| <a name="output_server_network_network_id"></a> [server\_network\_network\_id](#output\_server\_network\_network\_id) | ID of the Network which should be added to the Server. Required if `subnet_id` is not set. Successful creation of the resource depends on the existence of a subnet in the Hetzner Cloud Backend. Using `network_id` will not create an explicit dependency between server and subnet. Therefore `depends_on` may need to be used. Alternatively the `subnet_id` property can be used, which will create an explicit dependency between `hcloud_server_network` and the existence of a subnet. |
-| <a name="output_server_network_server_id"></a> [server\_network\_server\_id](#output\_server\_network\_server\_id) | ID of the Server to be attached/linked to the network. |
 | <a name="output_server_private_network"></a> [server\_private\_network](#output\_server\_private\_network) | Private Network the server shall be attached to. The Network that should be attached to the server requires at least one subnetwork. Subnetworks cannot be referenced by Servers in the Hetzner Cloud API. Therefore Terraform attempts to create the subnetwork in parallel to the server. This leads to a concurrency issue. It is therefore necessary to use depends\_on to link the server to the respective subnetwork. See examples. |
+| <a name="output_server_private_network_alias_ips"></a> [server\_private\_network\_alias\_ips](#output\_server\_private\_network\_alias\_ips) | Private Network Alias IPs |
+| <a name="output_server_private_network_id"></a> [server\_private\_network\_id](#output\_server\_private\_network\_id) | Private Network IDs |
+| <a name="output_server_private_network_ip"></a> [server\_private\_network\_ip](#output\_server\_private\_network\_ip) | Private Network IPs |
+| <a name="output_server_private_network_mac_address"></a> [server\_private\_network\_mac\_address](#output\_server\_private\_network\_mac\_address) | Private Network MAC Address' |
 | <a name="output_server_rebuild_protection"></a> [server\_rebuild\_protection](#output\_server\_rebuild\_protection) | Whether rebuild protection is enabled. |
 | <a name="output_server_shutdown_before_deletion"></a> [server\_shutdown\_before\_deletion](#output\_server\_shutdown\_before\_deletion) | Whether the server will try to shut down gracefully before being deleted. |
 | <a name="output_server_status"></a> [server\_status](#output\_server\_status) | The status of the server. |

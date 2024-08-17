@@ -70,21 +70,6 @@ resource "hcloud_snapshot" "snapshot" {
 
 
 ################################################
-# Server Network
-# https://registry.terraform.io/providers/hetznercloud/hcloud/latest/docs/resources/server_network
-################################################
-
-resource "hcloud_server_network" "server_network" {
-  count = var.create_server_network ? 1 : 0
-
-  server_id  = var.server_network_server_id
-  network_id = var.server_network_network_id
-  subnet_id  = var.server_network_subnet_id
-  alias_ips  = var.server_network_alias_ips
-  ip         = var.server_network_ip
-}
-
-################################################
 # Primary IP
 # https://registry.terraform.io/providers/hetznercloud/hcloud/latest/docs/resources/primary_ip
 ################################################
