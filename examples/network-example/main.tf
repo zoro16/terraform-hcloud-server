@@ -11,7 +11,7 @@ resource "hcloud_ssh_key" "key" {
 
 module "net" {
   source  = "zoro16/network/hcloud"
-  version = "1.0.0"
+  version = "1.1.2"
 
   create_network                   = true
   network_name                     = "example-network-server"
@@ -24,10 +24,9 @@ module "net" {
   }
 
   create_subnet        = true
-  subnet_network_id    = module.net.network_id
   subnet_type          = "cloud"
   subnet_network_zone  = "eu-central"
-  subnet_ip_cidr_range = "10.10.20.0/24"
+  subnet_ip_cidr_ranges = ["10.10.20.0/24"]
 }
 
 module "sv" {
