@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.4.0](https://github.com/zoro16/terraform-hcloud-server/compare/v1.3.0...v1.4.0) (2026-07-10)
+
+
+### Features
+
+* cleanup to force the release process ([84a1f03](https://github.com/zoro16/terraform-hcloud-server/commit/84a1f03dd61207ce8dfd92a1ec074bc3ff6a037e))
+
 ## [1.3.0](https://github.com/zoro16/terraform-hcloud-server/compare/v1.2.2...v1.3.0) (2024-08-17)
 
 
