@@ -27,6 +27,11 @@ jobs:
       - name: Setup Python
         uses: actions/setup-python@v3
 
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v4
+        with:
+          terraform_version: "1.15.8"
+
       - name: Setup TFLint
         uses: terraform-linters/setup-tflint@v3
         with:
