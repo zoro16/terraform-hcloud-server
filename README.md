@@ -36,14 +36,14 @@ module "sv" {
 ## Requirements
 
 | Name | Version |
-|------|---------|
+| ---- | ------- |
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.2.0 |
 | <a name="requirement_hcloud"></a> [hcloud](#requirement\_hcloud) | >= 1.48 |
 
 ## Providers
 
 | Name | Version |
-|------|---------|
+| ---- | ------- |
 | <a name="provider_hcloud"></a> [hcloud](#provider\_hcloud) | >= 1.48 |
 
 ## Modules
@@ -53,7 +53,7 @@ No modules.
 ## Resources
 
 | Name | Type |
-|------|------|
+| ---- | ---- |
 | [hcloud_placement_group.placement](https://registry.terraform.io/providers/hetznercloud/hcloud/latest/docs/resources/placement_group) | resource |
 | [hcloud_primary_ip.primary](https://registry.terraform.io/providers/hetznercloud/hcloud/latest/docs/resources/primary_ip) | resource |
 | [hcloud_server.server](https://registry.terraform.io/providers/hetznercloud/hcloud/latest/docs/resources/server) | resource |
@@ -62,7 +62,7 @@ No modules.
 ## Inputs
 
 | Name | Description | Type | Default | Required |
-|------|-------------|------|---------|:--------:|
+| ---- | ----------- | ---- | ------- | :------: |
 | <a name="input_allow_deprecated_images"></a> [allow\_deprecated\_images](#input\_allow\_deprecated\_images) | Enable the use of deprecated images (default: false). Note Deprecated images will be removed after three months. Using them is then no longer possible. | `bool` | `false` | no |
 | <a name="input_backups"></a> [backups](#input\_backups) | Whether to enable or disable backups. | `bool` | `true` | no |
 | <a name="input_create_placement_group"></a> [create\_placement\_group](#input\_create\_placement\_group) | A boolean to check whether to create a Placement Group resource or not. | `bool` | `false` | no |
@@ -111,7 +111,7 @@ No modules.
 ## Outputs
 
 | Name | Description |
-|------|-------------|
+| ---- | ----------- |
 | <a name="output_placement_group_id"></a> [placement\_group\_id](#output\_placement\_group\_id) | Placement Group ID the server added to on creation. |
 | <a name="output_placement_group_labels"></a> [placement\_group\_labels](#output\_placement\_group\_labels) | Placement Group ID the server added to on creation. |
 | <a name="output_placement_group_name"></a> [placement\_group\_name](#output\_placement\_group\_name) | Name of the Placement Group to be created. |
