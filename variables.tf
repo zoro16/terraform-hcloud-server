@@ -51,10 +51,9 @@ variable "server_type" {
   validation {
     condition = contains(
       [
-        "cx22", "cx32", "cx42", "cx52",                       # Intel
-        "cpx11", "cpx21", "cpx31", "cpx41", "cpx51",          # AMD
-        "cax11", "cax21", "cax31", "cax41",                   # ARM64
-        "ccx13", "ccx23", "ccx33", "ccx43", "ccx53", "ccx63", # Dedicated AMD
+        "cx23", "cx33", "cx43", "cx53", "cax11", "cax21", "cax31", "cax41",                                # Cheap
+        "cpx11", "cpx21", "cpx31", "cpx41", "cpx51", "cpx12", "cpx22", "cpx32", "cpx42", "cpx52", "cpx62", # Regular
+        "ccx13", "ccx23", "ccx33", "ccx43", "ccx53", "ccx63",                                              # Dedicated
       ],
     var.server_type)
     error_message = "Must have a vaild server type name, e.g. cx22"
